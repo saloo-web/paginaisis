@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo Virtual para Ti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f0f7;
+            color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: linear-gradient(135deg, #ffebee, #fce4ec);
+            padding: 2em;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 2em;
+            margin: 0;
+            animation: bounceIn 1s ease-out;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        button {
+            background-color: #d81b60;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #ad1457;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 1.5em;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            max-height: 80vh; /* Limita la altura máxima en móviles */
+            overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+            animation: openEnvelope 0.6s ease-in-out forwards;
+        }
+
+        .modal-content img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .modal-message {
+            font-size: 1.2em;
+            color: #8e24aa;
+            margin-top: 15px;
+            line-height: 1.4em;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: transparent;
+            border: none;
+            font-size: 1em;
+            color: #888;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes openEnvelope {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes heart-float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Heart Particle */
+        .heart {
+            position: absolute;
+            font-size: 1.5em;
+            color: #ff4081;
+            animation: heart-float 5s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body onload="createFloatingHearts()">
+    <div class="container">
+        <h1>Para Ti, Mi Amor 💖</h1>
+        <p>Te hice este pequeño detalle virtual para recordarte lo especial que eres para mí, Ana Isis.</p>
+        <button onclick="openModal()">Descubre tu Carta 💌</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <p class="modal-message">
+                Amor mío...
+                Te dije que todos los dias te hare minimo algo bonito y significativo, el primer dia te hice unas diapositivas, el segundo te hice un Regalo
+                y este tercer dia quiero hacerte una carta, pero no es cualquier carta amor esta carta se quedara subida en el internet para siempre, aqui te dire todo lo que siento por ti
+                estos dias han sido muy locos, nunca espere enfermarme asi, pero sabes todo es mas bonito a tu lado amor, nunca me he sentido solo ya que tengo a una mujer muy maravillosa a mi lado
+                eres la mujer de mis sueños, la mujer con la que quiero pasar todos estos mis años, enserio no se como agradecerte lo que has hecho por mi, como me has aguantado
+                solo te digo que tenme paciencia amor yo ati te hare la mujer mas feliz del mundo, nunca te faltara nada solo tenme un poco de paciencia querida, quiero que me vean ya contigo en la calle
+                y digan pero que mujer se carga porque tu eres un pedazo de mujeron dios mio eres una mujerrr muy maravillosa, grandiosa, graciosa, tierna y aveces vengativa amor,
+                pero todo eso te hace la mujer de mis sueños amor, no espero el dia que estemos abrazados y olvidarnos de estas enfermedades y volver hacer tu y yo todos los dias, Te amo Ana Isis, no lo olvides cariño ❤️"</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        // Floating Hearts Effect
+        function createFloatingHearts() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.textContent = "❤️";
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${Math.random() * 1 + 1.5}em`;
+                document.body.appendChild(heart);
+
+                setTimeout(() => { heart.remove(); }, 20000); // Remove heart after 5 seconds
+            }
+        }
+    </script>
+</body>
+</html>
